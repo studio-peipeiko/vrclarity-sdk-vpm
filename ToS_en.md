@@ -1,9 +1,9 @@
 # VRClarity SDK Terms of Service
 
-**Last Updated**: April 13, 2026
-**Version**: 1.1.0
+**Last Updated**: June 13, 2026
+**Version**: 1.1.1
 
-These Terms of Service (the "Terms") govern your use of the VRClarity SDK (the "SDK") provided by Studio peipeiko ("we", "us", or "our"). By using the SDK, you agree to be bound by these Terms.
+These Terms of Service (the "Terms") govern your use of the VRClarity SDK (the "SDK") provided by studio peipeiko ("we", "us", or "our"). By using the SDK, you agree to be bound by these Terms.
 
 ## 1. Service Overview
 
@@ -96,12 +96,15 @@ These Terms are governed by the laws of Japan. Any disputes related to these Ter
 
 For questions about these Terms, please contact:
 
-- **X (Twitter)**: [@peipeiko666](https://x.com/peipeiko666)
+- **Contact Form**: [https://vrclarity.net/contact](https://vrclarity.net/contact)
+- **Email**: hello@vrclarity.net
 
 ---
 
 **Change Log**
 
+- **v1.1.1 (2026-06-13)**: Contact information update
+  - Replaced the contact channel with the contact form (https://vrclarity.net/contact) and email (hello@vrclarity.net)
 - **v1.1.0 (2026-04-13)**: Terminology and policy clarification
   - Unified terminology from "collected" to "transmitted"
   - Revised Section 3.3 to align with MIT License (removed reverse engineering prohibition)
@@ -109,4 +112,4 @@ For questions about these Terms, please contact:
 
 ---
 
-Made with ❤️ by Studio peipeiko
+Made with ❤️ by studio peipeiko

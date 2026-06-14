@@ -17,8 +17,8 @@ All transmitted data is anonymous. No personal information such as displayName o
 ## Requirements
 
 - Unity 2022.3 or later
-- VRChat SDK Worlds 3.5.0 or later
-- UdonSharp 1.1.0 or later
+- VRChat SDK Worlds 3.7.0 or later
+- UdonSharp (bundled with VRChat SDK Worlds 3.7.0 or later)
 
 ---
 
@@ -27,8 +27,9 @@ All transmitted data is anonymous. No personal information such as displayName o
 1. Log in to the [VRClarity Dashboard](https://vrclarity.net) with your Discord account
 2. Navigate to the **SDK API Key Management** page from the left menu
 3. Click "Create New Key"
-4. Select the target World ID
-5. Copy the displayed **Key ID** and **Encryption Key** and save them securely
+4. Enter the target World ID (`wrld_...`) and optionally set a label
+5. Check the attestation that you are the creator of the world or an authorized collaborator, then create the key
+6. Copy the displayed **Key ID** and **Encryption Key** and save them securely
 
 > **Important:** The Encryption Key is only shown once on this screen. It cannot be retrieved after leaving the page, so make sure to copy it immediately.
 
@@ -64,6 +65,16 @@ A **VRClarity Notice Panel** is automatically placed alongside the Tracker to in
 
 > **About the Notice Panel:** This UI panel notifies players that VRClarity SDK is collecting anonymous statistics. Place it somewhere visible in your world. You can also bulk-change the font via the `VRClarityNoticePanel` component Inspector. To add a Notice Panel independently, right-click in the Hierarchy and select **VRClarity > Create Notice Panel**.
 
+> **Theme & size variants:** Six Notice Panel variants are available to match your world's look. Pick one from the right-click menu.
+> - **Create Notice Panel** — Dark theme, standard size (the one auto-placed when creating the Tracker)
+> - **Create Notice Panel (Compact)** — Dark theme, compact size (smaller variant that omits the catchphrase and divider)
+> - **Create Notice Panel (Minimal)** — Dark theme, minimal badge (logo + "VRClarity Installed" + site URL)
+> - **Create Notice Panel (Light)** — Light theme, standard size
+> - **Create Notice Panel (Light, Compact)** — Light theme, compact size
+> - **Create Notice Panel (Light, Minimal)** — Light theme, minimal badge
+>
+> The colors match the VRClarity dashboard's light/dark themes. **The Minimal badge does not include the disclosure text.** For transparency about data collection, we recommend pairing the Minimal badge with a standard or compact panel placed somewhere visible.
+
 ### 3-2. Configure the Inspector
 
 Enter the following in the VRClarityTracker component Inspector:
@@ -98,13 +109,15 @@ Total:        121 / 121 URLs baked
 
 Upload your world as usual. Data transmission to VRClarity begins as soon as players visit.
 
+> **About data reflection:** It can take **up to about 1 hour** for transmitted data to appear on the dashboard. If no data shows up right after uploading, please wait a while and check again.
+
 ---
 
 ## 4. View Data on the Dashboard
 
 Once players visit your world, data will appear on the VRClarity dashboard.
 
-For details on how to read the dashboard, see the [VRClarity Documentation](https://vrclarity.net/).
+For details on how to read the dashboard, see the [VRClarity Documentation](https://vrclarity.net/docs).
 
 ---
 
@@ -175,6 +188,10 @@ Periodically reports the concurrent player count in the instance.
 - Useful for monitoring real-time concurrent players and peak hours
 - Visualizes player count trends during events
 
+### About the Country Distribution
+
+The SDK itself does not transmit any location data. The "Country Distribution" on the dashboard is derived server-side: when a heartbeat is received, the origin country is estimated (via Cloudflare's country detection) and aggregated by country code only. The IP address itself is never stored.
+
 ---
 
 ## Troubleshooting
@@ -188,6 +205,7 @@ Periodically reports the concurrent player count in the instance.
 ### Data not appearing on the dashboard
 
 - Verify the world was uploaded correctly
+- Check that at least 1 hour has passed since data transmission started (reflection can take up to about 1 hour)
 - Check that the API Key is active (not revoked) on the SDK API Key Management page
 - Ensure the API Key is linked to the correct world on the dashboard
 
@@ -205,7 +223,7 @@ Periodically reports the concurrent player count in the instance.
 - **Encryption:** Industry-standard encryption
 - **Transmission:** All sends (Stay/Move/Visit/Platform/Player Count) are queue-managed and transmitted sequentially at 5-second intervals
 - **Total URLs:** 121 (Stay 9 + Move 6 + Visit 20 + Platform 5 + PC 81)
-- **Privacy:** displayName / userId are never sent. Only event type and numeric values are transmitted
+- **Privacy:** displayName / userId are never sent. Only event type and numeric values are transmitted. Country aggregation is estimated server-side on receipt; IP addresses are never stored
 - **Persistence:** PlayerData Persistence for visit counting
 - **Synchronization:** Not required. Each player operates independently on their local client
 
