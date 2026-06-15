@@ -43,7 +43,7 @@ All transmitted data is anonymous. No personal information such as displayName o
 2. Go to **Settings** > **Packages** > **Add Repository**
 3. Enter the following URL:
    ```
-   https://Studio-peipeiko.github.io/vrclarity-sdk-vpm/index.json
+   https://studio-peipeiko.github.io/vrclarity-sdk-vpm/index.json
    ```
 4. Click **Add**
 5. Add **VRClarity SDK** from your project's **Manage Project** page

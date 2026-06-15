@@ -6,7 +6,7 @@
   "unity": "2022.3",
   "author": {
     "name": "studio peipeiko",
-    "url": "https://github.com/Studio-peipeiko"
+    "url": "https://github.com/studio-peipeiko"
   },
   "vpmDependencies": {
     "com.vrchat.base": ">=3.7.0",
