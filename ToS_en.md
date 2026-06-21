@@ -1,7 +1,7 @@
 # VRClarity SDK Terms of Service
 
 **Last Updated**: June 22, 2026
-**Version**: 1.2.0
+**Version**: 1.3.0
 
 These Terms of Service (the "Terms") govern your use of the VRClarity SDK (the "SDK") provided by studio peipeiko ("we", "us", or "our"). By using the SDK, you agree to be bound by these Terms.
 
@@ -14,10 +14,16 @@ The VRClarity SDK is a player behavior measurement and analytics service for VRC
 - Platform detection (PCVR / Desktop / Quest / Android / iOS)
 - Time-series player count tracking
 
+### 1.1 Notice to Visiting Players (Important)
+
+When deploying the SDK in a world, world creators are **strongly encouraged** to inform visiting players that "VRClarity is used to collect non-personally-identifying statistical data (such as stay duration and travel distance)." When you create a Tracker, the SDK automatically generates and places a "Notice Panel" that informs visiting players of this data collection by default. World creators should ensure this notice by keeping the Notice Panel in a location visible to visiting players. For details on data handling, please refer to the [Privacy Policy](https://vrclarity.net/docs/privacy) and the [Service Terms of Service](https://vrclarity.net/docs/terms).
+
 ## 2. Data Ownership
 
 ### 2.1 Ownership of Transmitted Data
 **All metrics data transmitted to VRClarity is owned by VRClarity (us).** World creators consent to data transmission by using the SDK but do not retain ownership of the transmitted data itself.
+
+For clarity, the "ownership" referred to in this section concerns rights in the aggregated and statistical datasets and works derived therefrom, and does not limit or negate the rights that individual data subjects (such as visiting players) may have under the Privacy Policy and applicable data protection laws (including the EU General Data Protection Regulation (GDPR) and Japan's Act on the Protection of Personal Information). To the extent such data contains personal or pseudonymized information, its handling is governed by the [Privacy Policy](https://vrclarity.net/docs/privacy).
 
 ### 2.2 Data Usage Rights
 - **World Creators**: Can view statistics about their worlds through the VRClarity dashboard
@@ -105,6 +111,9 @@ For questions about these Terms, please contact:
 
 **Change Log**
 
+- **v1.3.0 (2026-06-22)**: Visitor notice and data-ownership clarification
+  - Added Section 1.1 "Notice to Visiting Players," stating the strong recommendation to inform visitors of data collection by maintaining the Notice Panel (aligned with Article 4(3) of the web Service Terms and Section 2.3 of the Privacy Policy)
+  - Added to Section 2.1 that the "ownership" under these Terms concerns the aggregated/statistical datasets and does not limit data subjects' rights under data protection laws (GDPR, Japan's APPI, etc.), resolving the tension between the ownership claim and the handling of pseudonymized information (aligned with the Privacy Policy)
 - **v1.2.0 (2026-06-22)**: Alignment with the service Terms of Service
   - Changed the court of jurisdiction in Section 7 from "Tokyo District Court" to "the district court having jurisdiction over the operator's principal place of business," unifying it with the web service Terms (Article 13)
   - Added a clause in Section 7 clarifying that mandatory consumer-protection rights are not limited
