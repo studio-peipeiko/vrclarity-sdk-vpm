@@ -1,7 +1,7 @@
 # VRClarity SDK Terms of Service
 
-**Last Updated**: June 13, 2026
-**Version**: 1.1.1
+**Last Updated**: June 22, 2026
+**Version**: 1.2.0
 
 These Terms of Service (the "Terms") govern your use of the VRClarity SDK (the "SDK") provided by studio peipeiko ("we", "us", or "our"). By using the SDK, you agree to be bound by these Terms.
 
@@ -84,13 +84,15 @@ We will make reasonable efforts to provide advance notice for significant change
 
 - **Data Accuracy**: We do not guarantee the accuracy of transmitted data
 - **Service Availability**: We do not guarantee continuous service availability
-- **Limitation of Liability**: We are not liable for any damages arising from the use of the SDK
+- **Limitation of Liability**: To the extent permitted by law, we are not liable for damages arising from the use of the SDK
 
-The SDK is provided "as is" without any warranties, express or implied.
+The SDK is provided "as is" without any warranties, express or implied. However, these disclaimers and limitations do not apply in cases of our willful misconduct or gross negligence, or where exemption or limitation of liability is not permitted under the Consumer Contract Act or other applicable laws.
 
 ## 7. Governing Law and Jurisdiction
 
-These Terms are governed by the laws of Japan. Any disputes related to these Terms shall be subject to the exclusive jurisdiction of the Tokyo District Court as the court of first instance.
+These Terms are governed by the laws of Japan. Any disputes related to these Terms shall be subject to the exclusive jurisdiction of the district court having jurisdiction over the operator's principal place of business as the court of first instance.
+
+The foregoing does not limit any mandatory consumer-protection rights available to you under the laws of your place of habitual residence.
 
 ## 8. Contact
 
@@ -103,6 +105,10 @@ For questions about these Terms, please contact:
 
 **Change Log**
 
+- **v1.2.0 (2026-06-22)**: Alignment with the service Terms of Service
+  - Changed the court of jurisdiction in Section 7 from "Tokyo District Court" to "the district court having jurisdiction over the operator's principal place of business," unifying it with the web service Terms (Article 13)
+  - Added a clause in Section 7 clarifying that mandatory consumer-protection rights are not limited
+  - Limited the Section 6 disclaimer to "the extent permitted by law" and added that the exemptions do not apply in cases of willful misconduct, gross negligence, or where prohibited by the Consumer Contract Act or other laws (addressing the risk that a blanket disclaimer is void; aligned with Article 8 of the web Terms)
 - **v1.1.1 (2026-06-13)**: Contact information update
   - Replaced the contact channel with the contact form (https://vrclarity.net/contact) and email (hello@vrclarity.net)
 - **v1.1.0 (2026-04-13)**: Terminology and policy clarification

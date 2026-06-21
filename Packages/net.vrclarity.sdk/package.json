@@ -1,13 +1,14 @@
 {
   "name": "net.vrclarity.sdk",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "displayName": "VRClarity SDK",
-  "description": "VRChatワールド用の匿名メトリクス収集SDK。詳細は https://vrclarity.net/ をご覧ください。",
+  "description": "VRChatワールド用の、個人を特定しない集計メトリクス収集SDK。詳細は https://vrclarity.net/ をご覧ください。",
   "unity": "2022.3",
   "author": {
     "name": "studio peipeiko",
     "url": "https://github.com/studio-peipeiko"
   },
+  "documentationUrl": "https://vrclarity.net/docs/sdk",
   "vpmDependencies": {
     "com.vrchat.base": ">=3.7.0",
     "com.vrchat.worlds": ">=3.7.0"

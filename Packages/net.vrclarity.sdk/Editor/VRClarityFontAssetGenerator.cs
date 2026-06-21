@@ -1,5 +1,5 @@
-// 開発者用ツール: PanelCharacterSet を変更した場合に SDF を再生成する。
-// SDF はリポジトリにコミット済みのため、通常このファイルを使う必要はない。
+// Developer tool: regenerate the SDF when PanelCharacterSet is changed.
+// The SDF is committed to the repository, so this file is normally not needed.
 
 using TMPro;
 using UnityEditor;
@@ -13,10 +13,10 @@ namespace StudioPeipeiko.VRClarity.Editor
         private const string FontOtfPath   = "Packages/net.vrclarity.sdk/Editor/Fonts/NotoSansJP-Regular.otf";
         private const string FontTtfPath   = "Packages/net.vrclarity.sdk/Editor/Fonts/NotoSansJP-Regular.ttf";
 
-        // パネルで実際に使う文字のみ事前書き込みしてアトラスサイズを最小化
-        // VRClarityNoticePanelCreator のテキスト内容と同期させること
+        // Pre-bake only the characters actually used in the panel to keep the atlas size minimal.
+        // Keep this in sync with the text content in VRClarityNoticePanelCreator.
         private const string PanelCharacterSet =
-            " ():./CDIKNRSUVacdehilmnprstvyβ、。（）・ーいこさしすせたてなのはまめをれんどイエクタツデリルワド分析導入匿名統計取得等送信滞在時間訪問回数";
+            " ():./CDIKNRSUVacdehilmnprstvyβ、。（）・ーいこさしすせたてなのはまめをれんどイエクタツデリルワド分析導入匿名統計取得等送信滞在時間訪問回数個人特定";
 
         [MenuItem("Tools/VRClarity/(dev) Regenerate Font Asset", false, 100)]
         private static void RegenerateFontAsset()

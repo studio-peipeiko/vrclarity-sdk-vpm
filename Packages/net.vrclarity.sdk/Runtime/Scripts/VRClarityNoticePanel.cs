@@ -4,9 +4,9 @@ using UnityEngine;
 namespace StudioPeipeiko.VRClarity.Runtime
 {
     /// <summary>
-    /// VRClarity Notice Panel の管理コンポーネント。
-    /// フォントの一括差し替えに使用します。
-    /// VRChat アップロード時にはストリップされますが、フォントは各テキストに適用済みのため影響ありません。
+    /// Management component for the VRClarity Notice Panel.
+    /// Used to bulk-replace the font across the panel.
+    /// It is stripped on VRChat upload, but the font is already applied to each text, so there is no impact.
     /// </summary>
     [DisallowMultipleComponent]
     public class VRClarityNoticePanel : MonoBehaviour
