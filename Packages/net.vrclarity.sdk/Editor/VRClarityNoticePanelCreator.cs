@@ -11,7 +11,7 @@ namespace StudioPeipeiko.VRClarity.Editor
 
     /// <summary>
     /// Notice Panel size variants. Standard = full size, Compact = a smaller version with a simplified header,
-    /// Minimal = a square badge with the logo, title, "Installed", and URL stacked vertically (no disclosure text).
+    /// Minimal = a square badge with the logo, title, "Installed", a short data-collection notice, and URL.
     /// </summary>
     public enum NoticePanelSize { Standard, Compact, Minimal }
 
@@ -96,6 +96,12 @@ namespace StudioPeipeiko.VRClarity.Editor
             public float   BodyLineSpacing;
             public string  BodyMetricText; // the small detail sentence; varies by size so it fits the panel height
 
+            // Notice — short disclosure line on the Minimal square badge (CreateSquareStack only)
+            public string  NoticeText;
+            public float   NoticeSize;
+            public Vector2 NoticePos;
+            public Vector2 NoticeSizeDelta;
+
             public bool    ShowFooter;
             public float   FooterSize;
             public float   FooterY;
@@ -137,22 +143,24 @@ namespace StudioPeipeiko.VRClarity.Editor
             ShowFooter = true, FooterSize = 13f, FooterY = 10f, FooterSizeDelta = new Vector2(-44f, 18f),
         };
 
-        // Minimal layout: a square badge with the logo, title, "Installed", and the site URL stacked
-        // vertically and centered. No data-collection disclosure — a supplementary marker alongside a full
-        // panel. Rendered by CreateSquareStack; LogoPos/TitlePos/CatchPos/FooterY use only the Y offset
+        // Minimal layout: a square badge with the logo, title, "Installed", a short data-collection
+        // notice, and the site URL stacked vertically and centered. Rendered by CreateSquareStack so it
+        // carries a minimal disclosure on its own; LogoPos/TitlePos/CatchPos/FooterY use only the Y offset
         // (X is auto-centered).
         private static readonly Layout MinimalLayout = new Layout
         {
             Width = 250f, Height = 250f, TopBorderHeight = 4f,
-            LogoSize = 85f, LogoPos = new Vector2(0f, -35f),
+            LogoSize = 85f, LogoPos = new Vector2(0f, -30f),
             TitleText = "VRClarity",
-            TitleSize = 35f, TitlePos = new Vector2(0f, -115f),
+            TitleSize = 35f, TitlePos = new Vector2(0f, -110f),
             TitleSizeDelta = new Vector2(0f, 48f), TitleAlign = TextAlignmentOptions.Top,
             ShowCatchphrase = false,
-            CatchSize = 20f, CatchPos = new Vector2(0f, -160f), CatchSizeDelta = new Vector2(0f, 28f),
+            CatchSize = 20f, CatchPos = new Vector2(0f, -155f), CatchSizeDelta = new Vector2(0f, 28f),
             ShowDivider = false,
             ShowBody = false,
-            ShowFooter = true, FooterSize = 15f, FooterY = 30f, FooterSizeDelta = new Vector2(0f, 24f),
+            NoticeText = "個人を特定しない統計を取得中",
+            NoticeSize = 12.5f, NoticePos = new Vector2(0f, -190f), NoticeSizeDelta = new Vector2(0f, 22f),
+            ShowFooter = true, FooterSize = 15f, FooterY = 22f, FooterSizeDelta = new Vector2(0f, 24f),
         };
 
         // ── Menu items ───────────────────────────────────────────────────────
@@ -391,7 +399,7 @@ namespace StudioPeipeiko.VRClarity.Editor
             tmp.alignment = TextAlignmentOptions.BottomRight;
         }
 
-        // Square "Minimal" badge: logo, title, "Installed", and URL stacked vertically and centered.
+        // Square "Minimal" badge: logo, title, "Installed", a short notice, and URL stacked and centered.
         // X positions are auto-centered; only the Y offsets from the layout are used.
         private static void CreateSquareStack(GameObject parent, TMP_FontAsset font, Palette palette, Layout layout)
         {
@@ -433,7 +441,21 @@ namespace StudioPeipeiko.VRClarity.Editor
             tagTmp.color     = palette.Accent;
             tagTmp.alignment = TextAlignmentOptions.Top;
 
-            // URL — subtle, centered near the bottom
+            // Data-collection notice — a short disclosure line so the Minimal badge is
+            // not a silent marker. Sits between the "Installed" tag and the URL.
+            var noticeTmp = CreateTMP(parent, "Notice", font);
+            var noticeRt  = noticeTmp.GetComponent<RectTransform>();
+            noticeRt.anchorMin = new Vector2(0f, 1f);
+            noticeRt.anchorMax = new Vector2(1f, 1f);
+            noticeRt.pivot     = new Vector2(0.5f, 1f);
+            noticeRt.anchoredPosition = layout.NoticePos;
+            noticeRt.sizeDelta = layout.NoticeSizeDelta;
+            noticeTmp.text      = layout.NoticeText;
+            noticeTmp.fontSize  = layout.NoticeSize;
+            noticeTmp.color     = palette.Subtle;
+            noticeTmp.alignment = TextAlignmentOptions.Top;
+
+            // URL — subtle, centered near the bottom (details at vrclarity.net)
             var urlTmp = CreateTMP(parent, "Footer", font);
             var urlRt  = urlTmp.GetComponent<RectTransform>();
             urlRt.anchorMin = new Vector2(0f, 0f);

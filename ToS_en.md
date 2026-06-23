@@ -21,7 +21,7 @@ When deploying the SDK in a world, world creators are **strongly encouraged** to
 ## 2. Data Ownership
 
 ### 2.1 Ownership of Transmitted Data
-**All metrics data transmitted to VRClarity is owned by VRClarity (us).** World creators consent to data transmission by using the SDK but do not retain ownership of the transmitted data itself.
+**Rights in the aggregated and statistical datasets — and works derived therefrom — created from metrics data transmitted to VRClarity belong to VRClarity (us).** World creators consent to the transmission and aggregated use of data by using the SDK, but do not claim rights in the aggregated or statistical datasets. The rights that individual data subjects (such as visiting players) hold under applicable data protection laws are in no way limited by this (see the following paragraph).
 
 For clarity, the "ownership" referred to in this section concerns rights in the aggregated and statistical datasets and works derived therefrom, and does not limit or negate the rights that individual data subjects (such as visiting players) may have under the Privacy Policy and applicable data protection laws (including the EU General Data Protection Regulation (GDPR) and Japan's Act on the Protection of Personal Information). To the extent such data contains personal or pseudonymized information, its handling is governed by the [Privacy Policy](https://vrclarity.net/docs/privacy).
 
@@ -31,7 +31,7 @@ For clarity, the "ownership" referred to in this section concerns rights in the 
   - Providing and improving the service
   - Publishing anonymized and aggregated statistics
   - Research and analysis
-  - Marketing and promotional activities
+  - Introducing the service and publishing statistics
 
 ### 2.3 Third-Party Data Sharing
 VRClarity may provide anonymized and aggregated data to third parties as statistical information. However, such data will not include personally identifiable information or information that identifies specific worlds.
@@ -111,6 +111,9 @@ For questions about these Terms, please contact:
 
 **Change Log**
 
+- **v1.4.0 (2026-06-23)**: Narrowing of the data-ownership clause and clarification of usage purposes
+  - Revised Section 2.1 to limit "ownership" to rights in the aggregated/statistical datasets and works derived therefrom, rather than blanket ownership of all raw data
+  - Changed the Section 2.2 usage purpose "Marketing and promotional activities" to "Introducing the service and publishing statistics"
 - **v1.3.0 (2026-06-22)**: Visitor notice and data-ownership clarification
   - Added Section 1.1 "Notice to Visiting Players," stating the strong recommendation to inform visitors of data collection by maintaining the Notice Panel (aligned with Article 4(3) of the web Service Terms and Section 2.3 of the Privacy Policy)
   - Added to Section 2.1 that the "ownership" under these Terms concerns the aggregated/statistical datasets and does not limit data subjects' rights under data protection laws (GDPR, Japan's APPI, etc.), resolving the tension between the ownership claim and the handling of pseudonymized information (aligned with the Privacy Policy)

@@ -16,7 +16,7 @@ namespace StudioPeipeiko.VRClarity.Editor
         // Pre-bake only the characters actually used in the panel to keep the atlas size minimal.
         // Keep this in sync with the text content in VRClarityNoticePanelCreator.
         private const string PanelCharacterSet =
-            " ():./CDIKNRSUVacdehilmnprstvyβ、。（）・ーいこさしすせたてなのはまめをれんどイエクタツデリルワド分析導入匿名統計取得等送信滞在時間訪問回数個人特定";
+            " ():./CDIKNRSUVacdehilmnprstvyβ、。（）・ーいこさしすせたてなのはまめをれんどイエクタツデリルワド分析導入匿名統計取得等送信滞在時間訪問回数個人特定中";
 
         [MenuItem("Tools/VRClarity/(dev) Regenerate Font Asset", false, 100)]
         private static void RegenerateFontAsset()
