@@ -1,9 +1,11 @@
 # VRClarity SDK Terms of Service
 
-**Last Updated**: June 22, 2026
-**Version**: 1.3.0
+**Last Updated**: June 23, 2026
+**Version**: 1.4.0
 
 These Terms of Service (the "Terms") govern your use of the VRClarity SDK (the "SDK") provided by studio peipeiko ("we", "us", or "our"). By using the SDK, you agree to be bound by these Terms.
+
+> **Note**: This English text is a reference translation provided for convenience. In the event of any discrepancy between this translation and the Japanese version ([ToS.md](./ToS.md)), the **Japanese version shall prevail**. The Service Terms of Service and Privacy Policy referenced herein are currently available in **Japanese only**.
 
 ## 1. Service Overview
 
