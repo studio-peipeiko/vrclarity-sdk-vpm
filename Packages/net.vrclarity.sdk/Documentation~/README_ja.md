@@ -22,7 +22,8 @@ VRChat ワールドのプレイヤー行動を計測し、VRClarity に送信す
 2. **Manage Project** から **VRClarity SDK** をインストール
 3. [VRClarity ダッシュボード](https://vrclarity.net) の「SDK APIキー管理」で **Key ID** と **Encryption Key** を発行
 4. ヒエラルキー右クリック → **VRClarity → Create Tracker**（Tracker と Notice Panel が自動配置されます）
-5. Inspector に Key ID / Encryption Key を入力し、通常どおりワールドをビルド＆アップロード
+5. Inspector に Key ID / Encryption Key を入力
+6. **アップロード直前に Inspector の「Enable Tracking」にチェック**を入れ、通常どおりワールドをビルド＆アップロード（未チェックの間は計測されません）
 
 > データがダッシュボードに反映されるまで最大約 1 時間かかります。
 
