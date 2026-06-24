@@ -35,6 +35,7 @@ namespace StudioPeipeiko.VRClarity.Editor
         }
         private SerializedProperty _keyId;
         private SerializedProperty _encryptionKey;
+        private SerializedProperty _enableTracking;
         private SerializedProperty _stayUrls;
         private SerializedProperty _moveUrls;
         private SerializedProperty _visitUrls;
@@ -48,6 +49,7 @@ namespace StudioPeipeiko.VRClarity.Editor
         {
             _keyId = serializedObject.FindProperty("keyId");
             _encryptionKey = serializedObject.FindProperty("encryptionKey");
+            _enableTracking = serializedObject.FindProperty("enableTracking");
             _stayUrls = serializedObject.FindProperty("_stayUrls");
             _moveUrls = serializedObject.FindProperty("_moveUrls");
             _visitUrls = serializedObject.FindProperty("_visitUrls");
@@ -74,6 +76,25 @@ namespace StudioPeipeiko.VRClarity.Editor
             EditorGUILayout.LabelField("API Settings", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(_keyId, new GUIContent("Key ID", "sk_ + 24 hex characters"));
             EditorGUILayout.PropertyField(_encryptionKey, new GUIContent("Encryption Key", "64 hex characters (256-bit AES key)"));
+
+            EditorGUILayout.Space(8);
+
+            // Production tracking gate
+            EditorGUILayout.LabelField("Tracking", EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(_enableTracking, new GUIContent("Enable Tracking", "アップロードする公開ワールドでのみチェックを入れてください。"));
+            if (_enableTracking.boolValue)
+            {
+                EditorGUILayout.HelpBox(
+                    "本番送信が有効です。アップロード後、実プレイのハートビートが送信されます。",
+                    MessageType.Info);
+            }
+            else
+            {
+                EditorGUILayout.HelpBox(
+                    "ローカルデバッグ保護中：ハートビートは送信されません（設定検証リクエストのみ）。\n" +
+                    "本番アップロードの直前にチェックを入れてください。チェックを忘れるとデータは収集されません。",
+                    MessageType.Warning);
+            }
 
             EditorGUILayout.Space(8);
 

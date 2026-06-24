@@ -41,6 +41,7 @@ namespace StudioPeipeiko.VRClarity.Editor
     public class VRClarityUrlBaker : IPreprocessBuildWithReport
     {
         private const string BASE_URL = "https://api.vrclarity.net/api/sdk/hb";
+        private const string VERIFY_URL = "https://api.vrclarity.net/api/sdk/verify";
 
         private static readonly int[] StayMilestones = { 1, 5, 15, 30, 60, 120, 240, 360, 480 };
         private static readonly int[] MoveMilestones = { 10, 50, 150, 400, 1000, 2500 };
@@ -127,9 +128,12 @@ namespace StudioPeipeiko.VRClarity.Editor
             // PC URLs (0..80)
             BakePcUrls(so, keyId, worldId, keyBytes);
 
+            // Verify URL (1) — config check, no ledger side effect on the server.
+            BakeVerifyUrl(so, keyId, worldId, keyBytes);
+
             so.ApplyModifiedProperties();
 
-            int totalUrls = StayMilestones.Length + MoveMilestones.Length + VisitBuckets.Length + PlatformTypes.Length + (MAX_PC + 1);
+            int totalUrls = StayMilestones.Length + MoveMilestones.Length + VisitBuckets.Length + PlatformTypes.Length + (MAX_PC + 1) + 1;
             Debug.Log($"[VRClarity] Baked {totalUrls} URLs for world {worldId}.");
 
             return true;
@@ -142,8 +146,28 @@ namespace StudioPeipeiko.VRClarity.Editor
             {
                 so.FindProperty(prop).arraySize = 0;
             }
+            var verifyField = so.FindProperty("_verifyUrl")?.FindPropertyRelative("url");
+            if (verifyField != null) verifyField.stringValue = "";
             so.ApplyModifiedProperties();
             Debug.LogWarning("[VRClarity] URL pools cleared. No URL requests will be sent.");
+        }
+
+        private static void BakeVerifyUrl(
+            SerializedObject so, string keyId, string worldId, byte[] keyBytes)
+        {
+            string plaintext = $"w={worldId}";
+            string encrypted = VRClarityEncryption.EncryptPayload(plaintext, keyBytes);
+            string url = $"{VERIFY_URL}?k={keyId}&d={encrypted}";
+
+            var urlField = so.FindProperty("_verifyUrl")?.FindPropertyRelative("url");
+            if (urlField != null)
+            {
+                urlField.stringValue = url;
+            }
+            else
+            {
+                Debug.LogError("[VRClarity] Failed to find 'url' property on _verifyUrl. Verify URL baking failed.");
+            }
         }
 
         private static void BakeUrlArray(
