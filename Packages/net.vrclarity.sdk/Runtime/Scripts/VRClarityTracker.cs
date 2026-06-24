@@ -124,7 +124,7 @@ namespace StudioPeipeiko.VRClarity.Runtime
             if (_pcUrls != null && _pcUrls.Length > 0)
             {
                 int pc = Mathf.Clamp(VRCPlayerApi.GetPlayerCount(), 0, 80);
-                EnqueueSend(_pcUrls[pc]);
+                if (pc < _pcUrls.Length) EnqueueSend(_pcUrls[pc]);
             }
 
             Debug.Log("[VRClarity] Tracker initialized. Waiting for PlayerData...");
@@ -152,7 +152,7 @@ namespace StudioPeipeiko.VRClarity.Runtime
                         break;
                     }
                 }
-                EnqueueSend(_visitUrls[bucketIndex]);
+                if (bucketIndex < _visitUrls.Length) EnqueueSend(_visitUrls[bucketIndex]);
             }
 
             Debug.Log($"[VRClarity] Visit count: {visitCount}");
@@ -188,7 +188,7 @@ namespace StudioPeipeiko.VRClarity.Runtime
                 if (_pcUrls != null && _pcUrls.Length > 0)
                 {
                     int pc = Mathf.Clamp(VRCPlayerApi.GetPlayerCount(), 0, 80);
-                    EnqueueSend(_pcUrls[pc]);
+                    if (pc < _pcUrls.Length) EnqueueSend(_pcUrls[pc]);
                 }
                 _lastPcSendTime = now;
             }

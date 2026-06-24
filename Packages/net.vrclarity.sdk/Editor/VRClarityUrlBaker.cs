@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using StudioPeipeiko.VRClarity.Runtime;
 using UnityEditor;
 using UnityEditor.Build;
@@ -20,7 +21,7 @@ namespace StudioPeipeiko.VRClarity.Editor
         {
             if (state != PlayModeStateChange.ExitingEditMode) return;
 
-            var trackers = Object.FindObjectsOfType<VRClarityTracker>();
+            var trackers = Object.FindObjectsByType<VRClarityTracker>(FindObjectsSortMode.None);
             if (trackers == null || trackers.Length == 0) return;
 
             foreach (var tracker in trackers)
@@ -38,7 +39,7 @@ namespace StudioPeipeiko.VRClarity.Editor
     /// Pre-build processor that bakes encrypted VRCUrl pools into VRClarityTracker components.
     /// Runs automatically before every build via IPreprocessBuildWithReport.
     /// </summary>
-    public class VRClarityUrlBaker : IPreprocessBuildWithReport
+    public class VRClarityUrlBaker : IPreprocessBuildWithReport, IPostprocessBuildWithReport
     {
         private const string BASE_URL = "https://api.vrclarity.net/api/sdk/hb";
         private const string VERIFY_URL = "https://api.vrclarity.net/api/sdk/verify";
@@ -51,15 +52,78 @@ namespace StudioPeipeiko.VRClarity.Editor
 
         public int callbackOrder => 0;
 
+        // Originals of the editor-only secret fields, captured at preprocess and
+        // restored at postprocess. Keep them out of the uploaded world (see
+        // StripSecrets) without losing the authoring values in the open scene.
+        private static readonly List<VRClarityTracker> _strippedTrackers = new List<VRClarityTracker>();
+        private static readonly List<string> _strippedKeyIds = new List<string>();
+        private static readonly List<string> _strippedEncKeys = new List<string>();
+
         public void OnPreprocessBuild(BuildReport report)
         {
-            var trackers = Object.FindObjectsOfType<VRClarityTracker>();
+            _strippedTrackers.Clear();
+            _strippedKeyIds.Clear();
+            _strippedEncKeys.Clear();
+
+            var trackers = Object.FindObjectsByType<VRClarityTracker>(FindObjectsSortMode.None);
             if (trackers == null || trackers.Length == 0) return;
 
             foreach (var tracker in trackers)
             {
-                BakeUrls(tracker);
+                if (!BakeUrls(tracker))
+                {
+                    // Bake failed (bad key / missing Blueprint ID): clear any stale
+                    // URLs so a previous bake isn't shipped, and skip secret stripping.
+                    ClearUrlPools(tracker);
+                    continue;
+                }
+                StripSecrets(tracker);
             }
+
+            // Backstop: restore on the next editor tick in case the build pipeline
+            // doesn't invoke OnPostprocessBuild. It fires only after the synchronous
+            // bundle build, so the cleared values are still what got serialized.
+            // Whichever restore runs first empties the lists; the other no-ops.
+            if (_strippedTrackers.Count > 0)
+                EditorApplication.delayCall += RestoreSecrets;
+        }
+
+        public void OnPostprocessBuild(BuildReport report)
+        {
+            RestoreSecrets();
+        }
+
+        // keyId / encryptionKey are only consumed by this editor baker; the
+        // runtime never reads them (it uses the pre-baked URL pools). Clear them
+        // from the serialized data before the world is built so the encryption
+        // key can't be extracted from the uploaded world and used to forge
+        // heartbeats. The originals are restored in OnPostprocessBuild.
+        private static void StripSecrets(VRClarityTracker tracker)
+        {
+            _strippedTrackers.Add(tracker);
+            _strippedKeyIds.Add(tracker.keyId);
+            _strippedEncKeys.Add(tracker.encryptionKey);
+
+            var so = new SerializedObject(tracker);
+            so.FindProperty("keyId").stringValue = "";
+            so.FindProperty("encryptionKey").stringValue = "";
+            so.ApplyModifiedProperties();
+        }
+
+        private static void RestoreSecrets()
+        {
+            for (int i = 0; i < _strippedTrackers.Count; i++)
+            {
+                var tracker = _strippedTrackers[i];
+                if (tracker == null) continue; // destroyed during the build
+                var so = new SerializedObject(tracker);
+                so.FindProperty("keyId").stringValue = _strippedKeyIds[i];
+                so.FindProperty("encryptionKey").stringValue = _strippedEncKeys[i];
+                so.ApplyModifiedProperties();
+            }
+            _strippedTrackers.Clear();
+            _strippedKeyIds.Clear();
+            _strippedEncKeys.Clear();
         }
 
         /// <summary>
@@ -101,7 +165,7 @@ namespace StudioPeipeiko.VRClarity.Editor
 
             string keyId = tracker.keyId;
 
-            var pipeline = Object.FindObjectOfType<PipelineManager>();
+            var pipeline = Object.FindAnyObjectByType<PipelineManager>();
             string worldId = pipeline?.blueprintId ?? "";
             if (string.IsNullOrEmpty(worldId) || !worldId.StartsWith("wrld_"))
             {
