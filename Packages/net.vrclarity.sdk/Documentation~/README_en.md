@@ -1,6 +1,6 @@
 # VRClarity SDK Setup Guide
 
-An SDK for VRChat worlds that measures player behavior and sends it to VRClarity.
+An SDK for VRChat worlds that sends anonymous, aggregated usage metrics to VRClarity. It does not collect or send any personally identifying information.
 
 > 📖 **For full setup steps, metric details, and troubleshooting, always refer to the online documentation.**
 > This file keeps only a brief overview; the details live online to avoid duplicated maintenance.
@@ -23,7 +23,7 @@ An SDK for VRChat worlds that measures player behavior and sends it to VRClarity
 3. Issue a **Key ID** and **Encryption Key** on the [VRClarity Dashboard](https://vrclarity.net) under "SDK API Key Management"
 4. Right-click the Hierarchy → **VRClarity > Create Tracker** (places the Tracker and a Notice Panel)
 5. Enter the Key ID / Encryption Key in the Inspector
-6. **Check "Enable Tracking" in the Inspector just before uploading**, then build and upload your world as usual (no data is collected while it is unchecked)
+6. **Check "Enable Tracking" in the Inspector just before uploading**, then build and upload your world as usual (no data is sent while it is unchecked)
 
 > It can take up to about 1 hour for data to appear on the dashboard.
 

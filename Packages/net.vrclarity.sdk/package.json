@@ -2,7 +2,7 @@
   "name": "net.vrclarity.sdk",
   "version": "0.6.0",
   "displayName": "VRClarity SDK",
-  "description": "VRChatワールド用の、個人を特定しない集計メトリクス収集SDK。詳細は https://vrclarity.net/ をご覧ください。",
+  "description": "VRChatワールド用の、個人を特定しない集計メトリクスを送信するSDK。詳細は https://vrclarity.net/ をご覧ください。",
   "unity": "2022.3",
   "author": {
     "name": "studio peipeiko",

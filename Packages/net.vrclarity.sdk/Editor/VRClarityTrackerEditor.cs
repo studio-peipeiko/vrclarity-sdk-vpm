@@ -92,7 +92,7 @@ namespace StudioPeipeiko.VRClarity.Editor
             {
                 EditorGUILayout.HelpBox(
                     "ローカルデバッグ保護中：ハートビートは送信されません（設定検証リクエストのみ）。\n" +
-                    "本番アップロードの直前にチェックを入れてください。チェックを忘れるとデータは収集されません。",
+                    "本番アップロードの直前にチェックを入れてください。チェックを忘れるとデータは送信されません。",
                     MessageType.Warning);
             }
 
