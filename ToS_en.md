@@ -1,7 +1,7 @@
 # VRClarity SDK Terms of Service
 
-**Last Updated**: June 23, 2026
-**Version**: 1.4.0
+**Last Updated**: July 16, 2026
+**Version**: 1.4.1
 
 These Terms of Service (the "Terms") govern your use of the VRClarity SDK (the "SDK") provided by studio peipeiko ("we", "us", or "our"). By using the SDK, you agree to be bound by these Terms.
 
@@ -9,25 +9,27 @@ These Terms of Service (the "Terms") govern your use of the VRClarity SDK (the "
 
 ## 1. Service Overview
 
-The VRClarity SDK is a player behavior measurement and analytics service for VRChat worlds. World creators can use the SDK to automatically measure, transmit, and analyze the following data:
+The VRClarity SDK is a UdonSharp component embedded in a VRChat world that transmits anonymous, aggregated usage metrics to VRClarity. World creators can use the SDK to automatically transmit the following anonymous aggregated data and review and analyze it on the VRClarity dashboard:
 
 - Stay duration and travel distance milestones
-- Visit count tracking with bucket system
-- Platform detection (PCVR / Desktop / Quest / Android / iOS)
-- Time-series player count tracking
+- Visit count bucket aggregation
+- Platform classification (PCVR / Desktop / Quest / Android / iOS)
+- Time-series player count aggregation
 
 ### 1.1 Notice to Visiting Players (Important)
 
-When deploying the SDK in a world, world creators are **strongly encouraged** to inform visiting players that "VRClarity is used to collect non-personally-identifying statistical data (such as stay duration and travel distance)." When you create a Tracker, the SDK automatically generates and places a "Notice Panel" that informs visiting players of this data collection by default. World creators should ensure this notice by keeping the Notice Panel in a location visible to visiting players. For details on data handling, please refer to the [Privacy Policy](https://vrclarity.net/docs/privacy) and the [Service Terms of Service](https://vrclarity.net/docs/terms).
+When deploying the SDK in a world, world creators are **strongly encouraged** to inform visiting players that "VRClarity is used to transmit non-personally-identifying, anonymous statistical data." When you create a Tracker, the SDK automatically generates and places a "Notice Panel" that informs visiting players of this data transmission by default. World creators should ensure this notice by displaying and keeping the Notice Panel in a location visible to visiting players, or by equivalent means. For details on data handling, please refer to the [Privacy Policy](https://vrclarity.net/docs/privacy) and the [Service Terms of Service](https://vrclarity.net/docs/terms).
 
 ## 2. Data Ownership
 
 ### 2.1 Ownership of Transmitted Data
+
 **Rights in the aggregated and statistical datasets — and works derived therefrom — created from metrics data transmitted to VRClarity belong to VRClarity (us).** World creators consent to the transmission and aggregated use of data by using the SDK, but do not claim rights in the aggregated or statistical datasets. The rights that individual data subjects (such as visiting players) hold under applicable data protection laws are in no way limited by this (see the following paragraph).
 
 For clarity, the "ownership" referred to in this section concerns rights in the aggregated and statistical datasets and works derived therefrom, and does not limit or negate the rights that individual data subjects (such as visiting players) may have under the Privacy Policy and applicable data protection laws (including the EU General Data Protection Regulation (GDPR) and Japan's Act on the Protection of Personal Information). To the extent such data contains personal or pseudonymized information, its handling is governed by the [Privacy Policy](https://vrclarity.net/docs/privacy).
 
 ### 2.2 Data Usage Rights
+
 - **World Creators**: Can view statistics about their worlds through the VRClarity dashboard
 - **VRClarity**: May use transmitted data for the following purposes:
   - Providing and improving the service
@@ -36,6 +38,7 @@ For clarity, the "ownership" referred to in this section concerns rights in the 
   - Introducing the service and publishing statistics
 
 ### 2.3 Third-Party Data Sharing
+
 VRClarity may provide anonymized and aggregated data to third parties as statistical information. However, such data will not include personally identifiable information or information that identifies specific worlds.
 
 ## 3. Prohibited Activities
@@ -43,27 +46,32 @@ VRClarity may provide anonymized and aggregated data to third parties as statist
 The following activities are **strictly prohibited** when using the SDK. Violations may result in SDK suspension, data deletion, and/or legal action.
 
 ### 3.1 Endpoint Modification
+
 - Changing the endpoint URL to which the SDK transmits data
 - Modifying the SDK to send data to servers other than VRClarity's
 - Using network settings or proxies to redirect data transmission
 
 ### 3.2 Data Misappropriation and Unauthorized Use
+
 - Providing, selling, or transferring transmitted data to third parties
 - Modifying the SDK to use it as a custom data transmission system
 - Unauthorized use of VRClarity's infrastructure
 - Mass data extraction through scraping or crawling
 
 ### 3.3 SDK Abuse
+
 - Publishing or transferring obtained encryption keys or API keys to third parties
 - Disabling or circumventing security features to misuse VRClarity's service
 
 ### 3.4 Unauthorized Access and Service Disruption
+
 - Attempting unauthorized access to VRClarity servers
 - DDoS attacks or other service disruption activities
 - Intentionally transmitting false or malicious data
 - Generating excessive server load through excessive requests
 
 ### 3.5 Trademark and Intellectual Property Infringement
+
 - Unauthorized use of VRClarity's trademarks or logos
 - Redistributing or reselling the SDK (except through official VPM registry distribution)
 - Removing or modifying copyright notices in the SDK
@@ -82,7 +90,7 @@ Even when modifying or redistributing code under the license terms, **these Term
 VRClarity reserves the right to take the following actions without prior notice:
 
 - Changing API endpoints
-- Modifying data collection specifications
+- Modifying data transmission specifications
 - Temporarily suspending or terminating the service
 - Updating these Terms
 
@@ -113,6 +121,9 @@ For questions about these Terms, please contact:
 
 **Change Log**
 
+- **v1.4.1 (2026-07-16)**: Terminology cleanup
+  - Reworded the Section 1 service overview around anonymous aggregated metrics
+  - Completed the "collected" → "transmitted" terminology unification (Sections 1.1 and 5)
 - **v1.4.0 (2026-06-23)**: Narrowing of the data-ownership clause and clarification of usage purposes
   - Revised Section 2.1 to limit "ownership" to rights in the aggregated/statistical datasets and works derived therefrom, rather than blanket ownership of all raw data
   - Changed the Section 2.2 usage purpose "Marketing and promotional activities" to "Introducing the service and publishing statistics"
